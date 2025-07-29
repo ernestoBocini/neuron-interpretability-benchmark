@@ -43,49 +43,6 @@ st.markdown("""
         box-shadow: 0 2px 10px rgba(0,0,0,0.2);
     }
     
-    .selection-container {
-        display: flex;
-        justify-content: center;
-        gap: 3rem;
-        margin: 3rem 0;
-        flex-wrap: wrap;
-    }
-    
-    .selection-card {
-        background: white;
-        padding: 2rem;
-        border-radius: 15px;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        text-align: center;
-        min-width: 300px;
-        transition: transform 0.3s, box-shadow 0.3s;
-        border: 2px solid #f0f0f0;
-    }
-    
-    .selection-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-        border-color: #4CAF50;
-    }
-    
-    .selection-icon {
-        font-size: 4rem;
-        margin-bottom: 1rem;
-    }
-    
-    .selection-title {
-        font-size: 1.5rem;
-        font-weight: bold;
-        margin-bottom: 1rem;
-        color: #333;
-    }
-    
-    .selection-description {
-        color: #666;
-        margin-bottom: 2rem;
-        line-height: 1.5;
-    }
-    
     .metric-card {
         background: white;
         padding: 1rem;
@@ -239,44 +196,35 @@ def show_home_page():
     </div>
     """, unsafe_allow_html=True)
     
-    # Create two columns for the selection cards
-    col1, col2, col3 = st.columns([1, 2, 1])
+    # Create centered columns for buttons
+    col1, col2, col3 = st.columns([1, 1, 1])
+    
+    with col1:
+        st.write("")  # Empty space
     
     with col2:
-        st.markdown("""
-        <div class="selection-container">
-            <div class="selection-card">
-                <div class="selection-icon">📊</div>
-                <div class="selection-title">Interpretability Benchmark</div>
-                <div class="selection-description">
-                    Explore our comprehensive benchmark measuring neuron interpretability 
-                    across selectivity, causality, robustness, and human consistency metrics.
-                </div>
-            </div>
-            
-            <div class="selection-card">
-                <div class="selection-icon">🔬</div>
-                <div class="selection-title">CLIP Microscope</div>
-                <div class="selection-description">
-                    Dive deep into individual neurons with feature visualizations, 
-                    top activating images, and detailed activation analysis.
-                </div>
-            </div>
-        </div>
-        """, unsafe_allow_html=True)
+        st.write("")  # Add some space
         
-        # Create buttons
-        col_btn1, col_btn2 = st.columns(2)
+        # Benchmark button
+        if st.button("📊 Explore Neuron Benchmark", 
+                    use_container_width=True, 
+                    type="primary",
+                    key="benchmark_btn"):
+            st.session_state.current_page = 'benchmark'
+            st.experimental_rerun()
         
-        with col_btn1:
-            if st.button("📊 Explore Benchmark", use_container_width=True, type="primary"):
-                st.session_state.current_page = 'benchmark'
-                st.experimental_rerun()
+        st.write("")  # Space between buttons
         
-        with col_btn2:
-            if st.button("🔬 Open Microscope", use_container_width=True, type="secondary"):
-                st.session_state.current_page = 'microscope'
-                st.experimental_rerun()
+        # Microscope button  
+        if st.button("🔬 CLIP Microscope", 
+                    use_container_width=True, 
+                    type="secondary",
+                    key="microscope_btn"):
+            st.session_state.current_page = 'microscope'
+            st.experimental_rerun()
+    
+    with col3:
+        st.write("")  # Empty space
 
 def show_benchmark_page():
     """Display the interpretability benchmark page"""
