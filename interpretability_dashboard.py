@@ -104,7 +104,7 @@ if 'current_page' not in st.session_state:
 if st.session_state.current_page != 'home':
     if st.button("🏠", key="home_button", help="Go to Home"):
         st.session_state.current_page = 'home'
-        st.experimental_rerun()
+        st.rerun()
 
 # ============================================================================
 # BENCHMARK DATA AND FUNCTIONS
@@ -211,7 +211,7 @@ def show_home_page():
                     type="primary",
                     key="benchmark_btn"):
             st.session_state.current_page = 'benchmark'
-            st.experimental_rerun()
+            st.rerun()
         
         st.write("")  # Space between buttons
         
@@ -221,7 +221,7 @@ def show_home_page():
                     type="secondary",
                     key="microscope_btn"):
             st.session_state.current_page = 'microscope'
-            st.experimental_rerun()
+            st.rerun()
     
     with col3:
         st.write("")  # Empty space
