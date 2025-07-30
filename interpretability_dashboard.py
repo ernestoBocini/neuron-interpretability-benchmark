@@ -42,34 +42,75 @@ st.markdown("""
         cursor: pointer;
         box-shadow: 0 2px 10px rgba(0,0,0,0.2);
     }
-    .big-button button {
-        font-size: 2rem !important;
-        padding: 1.5rem 2rem !important;
-        width: 300% !important;
-        height: auto !important;
-        border-radius: 1rem !important;
-        background-color: #ff4b4b !important;
+    
+    /* Large button styling for home page */
+    .large-button-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+        margin: 3rem 0;
+    }
+    
+    .large-button {
+        width: 100%;
+        max-width: 500px;
+        height: 120px;
+        font-size: 24px;
+        font-weight: bold;
+        border-radius: 15px;
+        border: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+    
+    .large-button-primary {
+        background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+        color: white;
+    }
+    
+    .large-button-secondary {
+        background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);
+        color: white;
+    }
+    
+    .large-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 12px 35px rgba(0,0,0,0.2);
+    }
+    
+    /* Override Streamlit button styles for home page */
+    div[data-testid="stButton"] > button {
+        width: 100% !important;
+        height: 120px !important;
+        font-size: 24px !important;
+        font-weight: bold !important;
+        border-radius: 15px !important;
+        border: none !important;
+        transition: all 0.3s ease !important;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.15) !important;
+    }
+    
+    div[data-testid="stButton"] > button[kind="primary"] {
+        background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%) !important;
         color: white !important;
     }
-
-    .big-button + div button {
-        background-color: white !important;
-        color: #262730 !important;
-        font-size: 2rem !important;
-        padding: 1.5rem 2rem !important;
-        width: 300% !important;
-        border-radius: 1rem !important;
-    }
-
     
-    .home-page button {
-        font-size: 2rem !important;
-        padding: 2rem 3rem !important;
-        height: auto !important;
-        width: 100% !important;
-        border-radius: 12px !important;
+    div[data-testid="stButton"] > button[kind="secondary"] {
+        background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%) !important;
+        color: white !important;
     }
-
+    
+    div[data-testid="stButton"] > button:hover {
+        transform: translateY(-3px) !important;
+        box-shadow: 0 12px 35px rgba(0,0,0,0.2) !important;
+    }
+    
     .metric-card {
         background: white;
         padding: 1rem;
@@ -222,32 +263,41 @@ def show_home_page():
         <h3>Choose what you want to explore</h3>
     </div>
     """, unsafe_allow_html=True)
-
-    st.markdown('<div class="home-page">', unsafe_allow_html=True)
-
+    
+    # Create centered columns for buttons with proper spacing
     col1, col2, col3 = st.columns([1, 2, 1])
-
+    
     with col1:
-        st.write("")
-
+        st.write("")  # Empty space
+    
     with col2:
-        with st.container():
-            st.markdown('<div class="big-button">', unsafe_allow_html=True)
-            if st.button("📊 Explore Neuron Benchmark"):
-                st.session_state.page = "neuron_benchmark"
-            st.markdown('</div>', unsafe_allow_html=True)
-
-            st.markdown('<div class="big-button">', unsafe_allow_html=True)
-            if st.button("🔬 CLIP Microscope"):
-                st.session_state.page = "clip_microscope"
-            st.markdown('</div>', unsafe_allow_html=True)
-
-
+        st.write("")  # Add some space
+        st.write("")  # Add more space
+        
+        # Benchmark button - Much larger now
+        if st.button("📊 Explore Neuron Benchmark", 
+                    use_container_width=True, 
+                    type="primary",
+                    key="benchmark_btn"):
+            st.session_state.current_page = 'benchmark'
+            st.rerun()
+        
+        st.write("")  # Space between buttons
+        st.write("")  # Extra space between buttons
+        
+        # Microscope button - Much larger now
+        if st.button("🔬 CLIP Microscope", 
+                    use_container_width=True, 
+                    type="secondary",
+                    key="microscope_btn"):
+            st.session_state.current_page = 'microscope'
+            st.rerun()
+        
+        st.write("")  # Bottom spacing
+        st.write("")  # Extra bottom spacing
+    
     with col3:
-        st.write("")
-
-    st.markdown('</div>', unsafe_allow_html=True)
-
+        st.write("")  # Empty space
 
 def show_benchmark_page():
     """Display the interpretability benchmark page"""
