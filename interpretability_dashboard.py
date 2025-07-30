@@ -42,6 +42,25 @@ st.markdown("""
         cursor: pointer;
         box-shadow: 0 2px 10px rgba(0,0,0,0.2);
     }
+    .big-button button {
+        font-size: 2rem !important;
+        padding: 1.5rem 2rem !important;
+        width: 100% !important;
+        height: auto !important;
+        border-radius: 1rem !important;
+        background-color: #ff4b4b !important;
+        color: white !important;
+    }
+
+    .big-button + div button {
+        background-color: white !important;
+        color: #262730 !important;
+        font-size: 2rem !important;
+        padding: 1.5rem 2rem !important;
+        width: 100% !important;
+        border-radius: 1rem !important;
+    }
+
     
     .home-page button {
         font-size: 2rem !important;
@@ -206,29 +225,23 @@ def show_home_page():
 
     st.markdown('<div class="home-page">', unsafe_allow_html=True)
 
-    col1, col2, col3 = st.columns([1, 1, 1])
+    col1, col2, col3 = st.columns([1, 2, 1])
 
     with col1:
         st.write("")
 
     with col2:
-        st.write("")
+        with st.container():
+            st.markdown('<div class="big-button">', unsafe_allow_html=True)
+            if st.button("📊 Explore Neuron Benchmark"):
+                st.session_state.page = "neuron_benchmark"
+            st.markdown('</div>', unsafe_allow_html=True)
 
-        if st.button("📊 Explore Neuron Benchmark", 
-                     use_container_width=True, 
-                     type="primary",
-                     key="benchmark_btn"):
-            st.session_state.current_page = 'benchmark'
-            st.rerun()
+            st.markdown('<div class="big-button">', unsafe_allow_html=True)
+            if st.button("🔬 CLIP Microscope"):
+                st.session_state.page = "clip_microscope"
+            st.markdown('</div>', unsafe_allow_html=True)
 
-        st.write("")
-
-        if st.button("🔬 CLIP Microscope", 
-                     use_container_width=True, 
-                     type="secondary",
-                     key="microscope_btn"):
-            st.session_state.current_page = 'microscope'
-            st.rerun()
 
     with col3:
         st.write("")
