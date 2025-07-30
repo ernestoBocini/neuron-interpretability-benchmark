@@ -86,33 +86,56 @@ st.markdown("""
         height: 220px;
     }
     
-    /* Override Streamlit button styles for home page */
-    div[data-testid="stButton"] > button {
+    /* Override Streamlit button styles for home page - Multiple selectors for maximum specificity */
+    div[data-testid="stButton"] > button,
+    .stButton > button,
+    button[kind="primary"],
+    button[kind="secondary"] {
         width: 100% !important;
         height: 180px !important;
-        font-size: 2.5rem !important;
-        font-weight: bold !important;
+        font-size: 3rem !important;
+        line-height: 1.2 !important;
+        font-weight: 900 !important;
         border-radius: 20px !important;
         border: none !important;
         transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
         box-shadow: 0 12px 35px rgba(0,0,0,0.15) !important;
+        text-transform: none !important;
+        letter-spacing: 0px !important;
     }
     
-    div[data-testid="stButton"] > button[kind="primary"] {
+    /* Primary button styling */
+    div[data-testid="stButton"] > button[kind="primary"],
+    .stButton > button[kind="primary"],
+    button[kind="primary"] {
         background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%) !important;
         color: white !important;
     }
     
-    div[data-testid="stButton"] > button[kind="secondary"] {
+    /* Secondary button styling */
+    div[data-testid="stButton"] > button[kind="secondary"],
+    .stButton > button[kind="secondary"],
+    button[kind="secondary"] {
         background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%) !important;
         color: white !important;
     }
     
-    div[data-testid="stButton"] > button:hover {
+    /* Hover effects with multiple selectors */
+    div[data-testid="stButton"] > button:hover,
+    .stButton > button:hover,
+    button[kind="primary"]:hover,
+    button[kind="secondary"]:hover {
         transform: translateY(-15px) scale(1.25) !important;
         box-shadow: 0 30px 80px rgba(0,0,0,0.4) !important;
-        font-size: 3.5rem !important;
+        font-size: 4rem !important;
         height: 220px !important;
+    }
+    
+    /* Additional font size enforcement */
+    div[data-testid="stButton"] > button *,
+    .stButton > button * {
+        font-size: inherit !important;
+        font-weight: inherit !important;
     }
     
     .metric-card {
