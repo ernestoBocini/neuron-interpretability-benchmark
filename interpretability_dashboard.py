@@ -55,14 +55,14 @@ st.markdown("""
     .large-button {
         width: 100%;
         max-width: 500px;
-        height: 120px;
-        font-size: 24px;
+        height: 180px;
+        font-size: 32px;
         font-weight: bold;
-        border-radius: 15px;
+        border-radius: 20px;
         border: none;
         cursor: pointer;
-        transition: all 0.3s ease;
-        box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        box-shadow: 0 12px 35px rgba(0,0,0,0.15);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -80,20 +80,21 @@ st.markdown("""
     }
     
     .large-button:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 12px 35px rgba(0,0,0,0.2);
+        transform: translateY(-8px) scale(1.05);
+        box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+        font-size: 34px;
     }
     
     /* Override Streamlit button styles for home page */
     div[data-testid="stButton"] > button {
         width: 100% !important;
-        height: 120px !important;
-        font-size: 24px !important;
+        height: 180px !important;
+        font-size: 32px !important;
         font-weight: bold !important;
-        border-radius: 15px !important;
+        border-radius: 20px !important;
         border: none !important;
-        transition: all 0.3s ease !important;
-        box-shadow: 0 8px 25px rgba(0,0,0,0.15) !important;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+        box-shadow: 0 12px 35px rgba(0,0,0,0.15) !important;
     }
     
     div[data-testid="stButton"] > button[kind="primary"] {
@@ -107,8 +108,9 @@ st.markdown("""
     }
     
     div[data-testid="stButton"] > button:hover {
-        transform: translateY(-3px) !important;
-        box-shadow: 0 12px 35px rgba(0,0,0,0.2) !important;
+        transform: translateY(-8px) scale(1.05) !important;
+        box-shadow: 0 20px 50px rgba(0,0,0,0.3) !important;
+        font-size: 34px !important;
     }
     
     .metric-card {
