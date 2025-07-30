@@ -56,7 +56,7 @@ st.markdown("""
         width: 100%;
         max-width: 500px;
         height: 180px;
-        font-size: 64px;
+        font-size: 96px;
         font-weight: bold;
         border-radius: 20px;
         border: none;
@@ -82,14 +82,14 @@ st.markdown("""
     .large-button:hover {
         transform: translateY(-8px) scale(1.05);
         box-shadow: 0 20px 50px rgba(0,0,0,0.3);
-        font-size: 34px;
+        font-size: 102px;
     }
     
     /* Override Streamlit button styles for home page */
     div[data-testid="stButton"] > button {
         width: 100% !important;
         height: 180px !important;
-        font-size: 32px !important;
+        font-size: 96px !important;
         font-weight: bold !important;
         border-radius: 20px !important;
         border: none !important;
@@ -110,7 +110,7 @@ st.markdown("""
     div[data-testid="stButton"] > button:hover {
         transform: translateY(-8px) scale(1.05) !important;
         box-shadow: 0 20px 50px rgba(0,0,0,0.3) !important;
-        font-size: 34px !important;
+        font-size: 102px !important;
     }
     
     .metric-card {
