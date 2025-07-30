@@ -45,7 +45,7 @@ st.markdown("""
     .big-button button {
         font-size: 2rem !important;
         padding: 1.5rem 2rem !important;
-        width: 100% !important;
+        width: 300% !important;
         height: auto !important;
         border-radius: 1rem !important;
         background-color: #ff4b4b !important;
@@ -57,7 +57,7 @@ st.markdown("""
         color: #262730 !important;
         font-size: 2rem !important;
         padding: 1.5rem 2rem !important;
-        width: 100% !important;
+        width: 300% !important;
         border-radius: 1rem !important;
     }
 
