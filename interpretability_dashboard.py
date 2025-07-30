@@ -43,6 +43,14 @@ st.markdown("""
         box-shadow: 0 2px 10px rgba(0,0,0,0.2);
     }
     
+    .home-page button {
+        font-size: 2rem !important;
+        padding: 2rem 3rem !important;
+        height: auto !important;
+        width: 100% !important;
+        border-radius: 12px !important;
+    }
+
     .metric-card {
         background: white;
         padding: 1rem;
@@ -195,36 +203,38 @@ def show_home_page():
         <h3>Choose what you want to explore</h3>
     </div>
     """, unsafe_allow_html=True)
-    
-    # Create centered columns for buttons
+
+    st.markdown('<div class="home-page">', unsafe_allow_html=True)
+
     col1, col2, col3 = st.columns([1, 1, 1])
-    
+
     with col1:
-        st.write("")  # Empty space
-    
+        st.write("")
+
     with col2:
-        st.write("")  # Add some space
-        
-        # Benchmark button
+        st.write("")
+
         if st.button("📊 Explore Neuron Benchmark", 
-                    use_container_width=True, 
-                    type="primary",
-                    key="benchmark_btn"):
+                     use_container_width=True, 
+                     type="primary",
+                     key="benchmark_btn"):
             st.session_state.current_page = 'benchmark'
             st.rerun()
-        
-        st.write("")  # Space between buttons
-        
-        # Microscope button  
+
+        st.write("")
+
         if st.button("🔬 CLIP Microscope", 
-                    use_container_width=True, 
-                    type="secondary",
-                    key="microscope_btn"):
+                     use_container_width=True, 
+                     type="secondary",
+                     key="microscope_btn"):
             st.session_state.current_page = 'microscope'
             st.rerun()
-    
+
     with col3:
-        st.write("")  # Empty space
+        st.write("")
+
+    st.markdown('</div>', unsafe_allow_html=True)
+
 
 def show_benchmark_page():
     """Display the interpretability benchmark page"""
