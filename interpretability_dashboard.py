@@ -312,13 +312,21 @@ def show_home_page():
         st.write("")  # Space between buttons
         st.write("")  # Extra space between buttons
         
-        # Microscope button - Much larger now
+        # Microscope button - Now redirects to external app
         if st.button("🔬 CLIP Microscope", 
                     use_container_width=True, 
                     type="secondary",
                     key="microscope_btn"):
-            st.session_state.current_page = 'microscope'
-            st.rerun()
+            # JavaScript to open the external Streamlit app in a new tab
+            st.markdown("""
+            <script>
+                window.open('https://microscope-clip.streamlit.app/', '_blank');
+            </script>
+            """, unsafe_allow_html=True)
+            
+            # Also show a message to the user
+            st.success("🚀 Opening CLIP Microscope in a new tab...")
+            st.info("If the new tab didn't open, please click here: [CLIP Microscope](https://microscope-clip.streamlit.app/)")
         
         st.write("")  # Bottom spacing
         st.write("")  # Extra bottom spacing
@@ -549,32 +557,6 @@ def show_benchmark_page():
         fig_dist.update_layout(height=400, title_text="Distribution of Component Scores")
         st.plotly_chart(fig_dist, use_container_width=True)
 
-def show_microscope_page():
-    """Display the microscope placeholder page"""
-    st.markdown("""
-    <div class="main-header">
-        <h1>🔬 CLIP Microscope</h1>
-        <p>Deep dive into individual neuron analysis</p>
-    </div>
-    """, unsafe_allow_html=True)
-    
-    st.markdown("""
-    <div class="placeholder-container">
-        <div class="placeholder-icon">🚧</div>
-        <div class="placeholder-title">THIS IS A PLACEHOLDER</div>
-        <div class="placeholder-subtitle">IMPLEMENTATION COMING SOON, STAY TUNED!</div>
-    </div>
-    """, unsafe_allow_html=True)
-    
-    st.markdown("""
-    ### Coming Soon Features:
-    - 🎨 **Feature Visualizations** - Generated neuron visualizations
-    - 📸 **Top Activating Images** - Highest activation examples  
-    - 🌡️ **Activation Heatmaps** - Spatial activation patterns
-    - 🔍 **Neuron Search** - Find neurons by concept or pattern
-    - 📊 **Cross-Analysis** - Compare with benchmark scores
-    """)
-
 # ============================================================================
 # MAIN APPLICATION
 # ============================================================================
@@ -585,8 +567,6 @@ def main():
         show_home_page()
     elif st.session_state.current_page == 'benchmark':
         show_benchmark_page()
-    elif st.session_state.current_page == 'microscope':
-        show_microscope_page()
 
 if __name__ == "__main__":
     main()
